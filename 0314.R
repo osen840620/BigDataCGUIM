@@ -119,10 +119,10 @@ substr("Hello World", start=2,stop=4)
 gsub("o","0","Hello World")
 
 #30
-grep("Tim",NBA1415$Name)
-NBA1415[grep("Tim",NBA1415$Name),]
-grepl("Tim",NBA1415$Name)
-subset(NBA1415,grepl("Tim",Name))
+grep("Duncan",NBA1415$Name)
+NBA1415[grep("Duncan",NBA1415$Name),]
+grepl("Duncan",NBA1415$Name)
+subset(NBA1415,grepl("Duncan",Name))
 
 #32
 which(letters>"m")
@@ -182,6 +182,14 @@ for(i in 1:nrow(NBA1415)){
     print(NBA1415[i,"Name"])
   }
 }
+
+for(i in 1:nrow(NBA1415)){
+  if(NBA1415[i,"GamesPlayed"]>70&
+    NBA1415[i,"TotalPoints"]>1500)
+  {
+    print(NBA1415[i,c("Name","Team","Position")])
+  }   
+  }
 
 
 #39
