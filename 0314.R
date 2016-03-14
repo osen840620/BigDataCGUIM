@@ -54,7 +54,7 @@ unclass(IntDate)
 #19
 as.Date("2012/03/01")
 as.Date("2012 MAR 01")
-as.Date("2012 MAR 01", "%Y %b %d")
+as.Date("2012 MAR 01", "%y %b %d")
 ?strptime
 x18 <- as.Date("2012-03-01")
 y18 <-as.Date("2012-02-28") 
@@ -87,7 +87,7 @@ library(SportsAnalytics)
 NBA1415<-fetch_NBAPlayerStatistics("14-15")
 San<-subset(NBA1415,Team=='SAN')
 San
-San[order(San$GamesPlayed,decreasing = T),"Name"]
+San[order(San$GamesPlayed,decreasing = T),c("Name","GamesPlayed")]
 
 #24
 str(iris)
