@@ -90,6 +90,8 @@ sapply(NBA1415TP, colMeans)
 aggregate(NBA1415$TotalPoints, by=list(NBA1415$Team,NBA1415$Position), FUN=mean, na.rm=TRUE)
 ##類似apply家族的函數：aggregate()-2
 aggregate(TotalPoints ~ Team+Position, data = NBA1415, mean)
+aggregate(TotalPoints ~ Position, data = NBA1415, mean)
+aggregate(TotalRebounds~ Position, data = NBA1415, mean)
 
 #Missing Value
 x<-c(1,2,3,4,5,NA)
@@ -165,3 +167,4 @@ download.file("https://raw.githubusercontent.com/yijutseng/
 ## read.csv使用範例
 data <- read.csv('open.csv')
 data
+
