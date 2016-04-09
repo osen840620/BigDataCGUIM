@@ -322,10 +322,9 @@ if (!require('httr')){
 ```
 ```{r eval=FALSE}
 #put your token
-token<-"CAACEdEose0cBAOW9QjjEMGHGp54JEGytGz9tPRltLiHRGJsHae0dSEHxlVmogqJ4hd8EoUQvB3yvDWFDpnHX8dfA2AIgelMfXQ7jZCrQbeaTEIWfjZCWoVZCzZB3cqrq8HFwr73qD1eaiNZAZCmFq0iZCi6kWFHn6Dh8gPFkRLMqvLhl17CuvbpixEO6k0ZBr1FcXq9L9pmFvL3JeX1ZCIBg8" #put your token
+token<-"CAACEdEose0cBACwPEwri1PT49PCkIQiOiM5DySvXnwp1yN8gEOD9qYPxc6gaRbEG2SwmhYHaYqVe5R0FQQVBif1zvwzPaDt8dB5i0gCwa91HLFRtBEn8KuvOnHj0N5xRH0PYFxLrx0rPOBnrShzi1lNY5TsnGMX6J3ZC6hANwLpSd7HhQXVRNZB2MSV6xQN3hnMoZBdMwZDZD" #put your token
 FBData = GET(
-    paste0("https://graph.facebook.com/v2.5/tsaiingwen?fields=
-           posts{message,likes.summary(true)}&access_token=",
+    paste0("https://graph.facebook.com/v2.5/DoctorKoWJ/posts?fields=comments%2Clikes%2Cmessage&limit=10&access_token=,token",
            token))
 names(FBData)
 ```
@@ -387,7 +386,7 @@ if (!require('Rfacebook')){
 
 ## Use Rfacebook To Get Info from A Page
 ```{r eval=FALSE}
-getPage("tsaiingwen", token,n = 30)
+getPage("DoctorKoWJ", token,n = 30)
 ```
 <img src="Fig/RfacebookExample.png" width="800px">
 
@@ -412,9 +411,9 @@ DateVectorStr
 ## How To Get More Data?
 Use **since** and **until**
 ```{r eval=FALSE}
-token<-'Your Token'
+token<-'CAACEdEose0cBACwPEwri1PT49PCkIQiOiM5DySvXnwp1yN8gEOD9qYPxc6gaRbEG2SwmhYHaYqVe5R0FQQVBif1zvwzPaDt8dB5i0gCwa91HLFRtBEn8KuvOnHj0N5xRH0PYFxLrx0rPOBnrShzi1lNY5TsnGMX6J3ZC6hANwLpSd7HhQXVRNZB2MSV6xQN3hnMoZBdMwZDZD'
 for(i in 1:(length(DateVectorStr)-1)){
-    tempPage<-getPage("tsaiingwen", token,
+    tempPage<-getPage("DoctorKoWJ", token,
                       since = DateVectorStr[i],until = DateVectorStr[i+1])
     totalPage<-rbind(totalPage,tempPage)
 }
@@ -448,7 +447,7 @@ totalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))
 
 ```{r eval=FALSE}
 #計算likes, comments, shares
-aggregate(要算平均的欄位名稱~date,totalPage,mean)
+aggregate(likes_count~dateTPE,totalPage,mean)
 ```
 
 
