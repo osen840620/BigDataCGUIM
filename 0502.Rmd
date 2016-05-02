@@ -356,7 +356,9 @@ xyplot(Ozone ~ Wind, data = airquality)  ## Auto-printing
 ## ggplot2 “Hello, world!”
 
 ```{r, fig.height=4, warning=F,message=F}
-library(ggplot2) #記得將ggplot2 package讀入，如果沒安奘記得先安裝
+library(ggplot2) #記得將ggplot2
+#install.packages("ggplot2")
+#package讀入，如果沒安奘記得先安裝
 #qplot(x軸,y軸,data=使用資料)--->畫散佈圖
 qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415)
 ```
@@ -397,7 +399,7 @@ qplot(TotalPoints, data = NBA1415, fill = Position)
 #qplot(x軸,y軸,data=使用資料)--->畫散佈圖
 #facets = . ~ Position 用守備位置Position分群畫圖(橫向)
 qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415,
-      facets = . ~ Position)
+      facets = Position ~ .)
 ```
 
 ## Facets
