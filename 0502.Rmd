@@ -242,8 +242,8 @@ library(datasets)
 library(lattice)
 ## Convert 'Month' to a factor variable
 airquality <- transform(airquality, Month = factor(Month)) 
-xyplot(Ozone ~ Wind | Month, #y軸~x軸 | 分組依據
-       data = airquality, layout = c(5, 1)) # 5 rows, 1 column
+xyplot(Wind ~ Ozone | Month, #y軸~x軸 | 分組依據
+       data = airquality, layout = c(1, 5)) # 5 rows, 1 column
 ```
 
 ## Lattice Behavior-1
