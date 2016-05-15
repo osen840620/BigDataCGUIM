@@ -1,0 +1,40 @@
+---
+title: "1928-1969間，小兒麻痺在美國各州的發生率變化"
+output: github_document
+---
+
+##資料前處理
+```{r}
+#讀csv資料
+polio<-read.csv("POLIO_Incidence.csv",stringsAsFactors = F)
+head(polio)
+```
+
+```{r}
+#將寬表格轉為長表格，以年(YEAR)/週(WEEK)為基準，各州名column打散變長
+polio.m<-melt(polio,id.vars = c('YEAR','WEEK'))
+head(polio.m)
+```
+
+```{r}
+polio.m[polio.m$value=="-",]$value<-NA #處理缺值,將"-"轉為NA
+polio.m$value<-as.numeric(polio.m$value)#將value欄位轉為數字
+polio.sumYear<- #各州各年度加總，計算該年度的總發生率
+    aggregate(value~YEAR+variable,data=polio.m,FUN=sum,na.rm=F)
+head(polio.sumYear)
+```
+
+
+##視覺畫呈現
+我選擇使用Heatmap來畫圖，因要求1928-1969間小兒麻痺在美國各洲的發生率變化，表示需要用三維的圖來呈現各洲每年的發生率，x軸放年度，y軸放各洲的名字，每個點則放小兒麻痺的發生率，藉此就能清楚比較每個洲每年的發生率之間的關係，也可以清楚看到在1955年之後，發生率都有變小的趨勢。
+```{r}
+
+ggplot(polio.m, aes(YEAR, variable)) + #aes(x,y)
+    geom_tile(aes(fill = value),colour = "white")+ #geom_tile: 區塊著色
+    scale_fill_gradient(low = "white",high = "steelblue") #數值低：白色
+
+ggplot(polio.sumYear)+ #資料為polio.sumYear
+    geom_line(aes(x=YEAR,y=value,color=variable))+ #geom_line:畫折線圖
+    geom_vline(xintercept = 1955,colour="black", linetype = "longdash")
+```
+
