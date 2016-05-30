@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+install.packages("flexdashboard")
+library(flexdashboard)
+library(SportsAnalytics)
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("plotly")
+library(plotly)
+NBA1516<-fetch_NBAPlayerStatistics('15-16')
+```
+
+Column 
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+p<-ggplot(NBA1516)+geom_point(aes(x=TotalPoints,y=TotalMinutesPlayed))
+ggplotly(p)
+```
+
+Column 
+-----------------------------------------------------------------------
